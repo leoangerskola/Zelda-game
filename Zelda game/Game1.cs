@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Zelda_game
 {
@@ -8,6 +9,8 @@ namespace Zelda_game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Player player;
+        List<Enemies> enemies;
 
         public Game1()
         {
@@ -26,14 +29,30 @@ namespace Zelda_game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            player = new Player(Content.Load<Texture2D>("Player/linktemp"), 300, 200, 10f, 10f);
 
+            enemies = new List<Enemies>();
+            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/bokoblintemp"), 0, 200);
+            enemies.Add(bokoblin);
             // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            player.Update(gameTime);
+            foreach(Enemies en in enemies)
+            {
+                if (en.CheckCollision(player))
+                {
+                    player.Health -= 1;
+                }
+            }
+
+            if(player.Health == 0)
+            {
+                player.IsAlive = false;
+                this.Exit();
+            }
 
             // TODO: Add your update logic here
 
@@ -43,7 +62,15 @@ namespace Zelda_game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _spriteBatch.Begin();
+            player.Draw(_spriteBatch);
+            
+            foreach(Enemies enemy in enemies)
+            {
+                enemy.Draw(_spriteBatch);
+            }
 
+            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
