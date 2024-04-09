@@ -10,7 +10,7 @@ namespace Zelda_game
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Player player;
-        List<Enemies> enemies;
+        List<Enemy> enemies;
 
         public Game1()
         {
@@ -31,7 +31,7 @@ namespace Zelda_game
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             player = new Player(Content.Load<Texture2D>("Player/linktemp"), 300, 200, 10f, 10f);
 
-            enemies = new List<Enemies>();
+            enemies = new List<Enemy>();
             Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/bokoblintemp"), 0, 200);
             enemies.Add(bokoblin);
             // TODO: use this.Content to load your game content here
@@ -40,11 +40,19 @@ namespace Zelda_game
         protected override void Update(GameTime gameTime)
         {
             player.Update(gameTime);
-            foreach(Enemies en in enemies)
+            foreach(Enemy en in enemies)
             {
                 if (en.CheckCollision(player))
                 {
                     player.Health -= 1;
+                    
+                }
+                if (player.isAttacking)
+                {
+                    if (en.hitbox.Intersect(player.swordHitbox))
+                    {
+
+                    }
                 }
             }
 
@@ -65,7 +73,7 @@ namespace Zelda_game
             _spriteBatch.Begin();
             player.Draw(_spriteBatch);
             
-            foreach(Enemies enemy in enemies)
+            foreach(Enemy enemy in enemies)
             {
                 enemy.Draw(_spriteBatch);
             }
