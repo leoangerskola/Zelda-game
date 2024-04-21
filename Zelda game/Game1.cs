@@ -11,6 +11,7 @@ namespace Zelda_game
         private SpriteBatch _spriteBatch;
         Player player;
         List<Enemy> enemies;
+        private Matrix translation;
 
         public Game1()
         {
@@ -18,7 +19,12 @@ namespace Zelda_game
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
+        public void CalcTranslation()
+        {
+            var dx = (GraphicsDevice.Viewport.Width / 2) - player.X;
+            var dy = (GraphicsDevice.Viewport.Height / 2) - player.Y;
+            translation = Matrix.CreateTranslation(dx, dy, 0);
+        }
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -29,8 +35,8 @@ namespace Zelda_game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            player = new Player(Content.Load<Texture2D>("Player/linktemp"), 300, 200, 10f, 10f);
-
+            player = new Player(Content.Load<Texture2D>("Player/linktemp"), GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 10f, 10f);
+           
             enemies = new List<Enemy>();
             Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/bokoblintemp"), 0, 200);
             enemies.Add(bokoblin);
@@ -40,19 +46,13 @@ namespace Zelda_game
         protected override void Update(GameTime gameTime)
         {
             player.Update(gameTime);
+            CalcTranslation();
             foreach(Enemy en in enemies)
             {
                 if (en.CheckCollision(player))
                 {
                     player.Health -= 1;
                     
-                }
-                if (player.isAttacking)
-                {
-                    if (en.hitbox.Intersect(player.swordHitbox))
-                    {
-
-                    }
                 }
             }
 
@@ -70,7 +70,7 @@ namespace Zelda_game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(transformMatrix: translation);
             player.Draw(_spriteBatch);
             
             foreach(Enemy enemy in enemies)

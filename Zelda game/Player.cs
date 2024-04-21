@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -9,15 +10,10 @@ namespace Zelda_game
     {
         int health = 5; 
         int points = 0;
-        public bool isAttacking = false;
-        double attackCooldown = 0;
-        public Rectangle swordHitbox; // Hitbox för svärd
-
 
 
         public Player(Texture2D texture, float X, float Y, float speedX, float speedY) : base(texture, X, Y, speedX, speedY)
         {
-            swordHitbox = new Rectangle(0, 0, texture.Width / 4, texture.Height / 4);
         }
 
         public void Update( GameTime time)
@@ -29,14 +25,6 @@ namespace Zelda_game
             KeyboardState keyboardState = Keyboard.GetState();
 
             //sword controls
-            if(keyboardState.IsKeyDown(Keys.Space))
-            {
-                if(time.TotalGameTime.TotalMilliseconds > attackCooldown + 100)
-                {
-                    isAttacking = true;
-                    attackCooldown = time.TotalGameTime.TotalMilliseconds;
-                }
-            }
             
             //Movement controlls
             if(keyboardState.IsKeyDown(Keys.W)) 
@@ -69,6 +57,8 @@ namespace Zelda_game
             get { return points; }
             set { points = value; }
         }
+
+        public object Globals { get; }
     }
 
 
