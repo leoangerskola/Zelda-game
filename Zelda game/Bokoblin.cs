@@ -17,29 +17,12 @@ namespace Zelda_game
 
         public override void Update()
         {
-            Random random = new Random();
-
-            while (true)
+            if (health <= 0)
             {
-                int direction = random.Next(1, 4);
-                
-                if(direction == 1)
-                {
-                    position.X += speed.X;
-                }
-                if (direction == 2)
-                {
-                    position.Y += speed.Y;
-                }
-                if (direction == 3)
-                {
-                    position.X -= speed.X;
-                }
-                if (direction == 4)
-                {
-                    position.Y -= speed.Y;
-                }
+                isAlive = false;
             }
+
+            
         }
     }
 }

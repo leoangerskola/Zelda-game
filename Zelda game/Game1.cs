@@ -35,10 +35,11 @@ namespace Zelda_game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            player = new Player(Content.Load<Texture2D>("Player/linktemp"), GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 10f, 10f);
+            player = new Player(Content.Load<Texture2D>("Player/link_sprite"), GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 3f, 3f, Content.Load<Texture2D>("Player/sword"));
+            
            
             enemies = new List<Enemy>();
-            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/bokoblintemp"), 0, 200);
+            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/Bokoblin_sprite"), 0, 200);
             enemies.Add(bokoblin);
             // TODO: use this.Content to load your game content here
         }
