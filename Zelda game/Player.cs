@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -9,24 +8,26 @@ namespace Zelda_game
 {
     internal class Player : PhysicalObject
     {
-        int health = 6; 
+        int health = 6;
         int points = 0;
         enum directon { up, down, left, right };
         directon facing;
         Timer swordTimer;
 
         Texture2D swordTexture;
-        List <Sword> s;
+        List<Sword> swords;
         double attackCooldown = 0;
+        bool Isattacking;
 
         public Player(Texture2D texture, float X, float Y, float speedX, float speedY, Texture2D swordTexture) : base(texture, X, Y, speedX, speedY)
         {
-            s = new List<Sword>();
+            swords = new List<Sword>();
             this.swordTexture = swordTexture;
         }
 
-            public void Update( GameTime time)
+        public void Update(GameTime time)
         {
+ 
             //================================================
             //                     Controls
             //================================================
@@ -34,31 +35,50 @@ namespace Zelda_game
             KeyboardState keyboardState = Keyboard.GetState();
 
             //sword controls
-            if(keyboardState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) && time.TotalGameTime.TotalMilliseconds > attackCooldown + 300)
             {
-                if(time.TotalGameTime.TotalMilliseconds > attackCooldown + 100)
-                {
-                    Sword temp = new Sword(swordTexture, position.X, position.Y, 0, 0);
-                    s.Add(temp);
-                    attackCooldown = time.TotalGameTime.TotalMilliseconds;
 
-                }
+                Sword temp;
 
-                foreach (Sword sword in s)
+
+                switch (facing)
                 {
-                    sword.Update();
-                    if (attackCooldown + 100 < time.TotalGameTime.TotalMilliseconds)
-                    {
-                        s.Remove(sword);
-                    }
+                    case directon.up:
+                        temp = new Sword(swordTexture, position.X +5, position.Y - 20, 0, 0);;
+                        break;
+                    case directon.down:
+                        temp = new Sword(swordTexture, position.X + 5, position.Y + 20, 0, 0);
+                        break;
+                    case directon.left:
+                        temp = new Sword(swordTexture, position.X - 10, position.Y, 0, 0);
+                        break;
+                    case directon.right:
+                        temp = new Sword(swordTexture, position.X + 20, position.Y, 0, 0);
+                        break;
+                    default:
+                        temp = new Sword(swordTexture, position.X + 5, position.Y + 20, 0, 0);
+                        break;
                 }
+                attackCooldown = time.TotalGameTime.TotalMilliseconds;
+                swords.Add(temp);
             }
+            else
+            {
+                Isattacking = false;
+            }
+            swords.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
+
+
+
+
             //Movement controlls
-            if(keyboardState.IsKeyDown(Keys.W)) 
+
+
+            if (keyboardState.IsKeyDown(Keys.W))
             {
                 position.Y -= speed.Y;
                 facing = directon.up;
-            
+
             }
             if (keyboardState.IsKeyDown(Keys.A))
             {
@@ -77,7 +97,6 @@ namespace Zelda_game
             }
 
 
-
         }
 
         public int Health
@@ -92,19 +111,19 @@ namespace Zelda_game
             set { points = value; }
         }
 
-        public List<Sword> S
+        public List<Sword> Swords
         {
-            get { return s; }
+            get { return swords; }
         }
-    
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
-            foreach (Sword sword in s)
+            foreach (Sword sword in swords)
             {
                 sword.Draw(spriteBatch);
             }
-        }  
+        }
     }
 
 

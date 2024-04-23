@@ -55,7 +55,21 @@ namespace Zelda_game
                     player.Health -= 1;
                     
                 }
+
+                foreach(Sword sword in player.Swords)
+                {
+                    if (en.CheckCollision(sword))
+                    {
+                        en.Health -= 1;
+                    }
+                }
+            if(en.Health <= 0)
+                {
+                    en.IsAlive = false;
+                    enemies.Remove(en);
+                }
             }
+
 
             if(player.Health == 0)
             {
