@@ -11,7 +11,7 @@ namespace Zelda_game
     internal class GameObject
     {
         protected Texture2D texture;
-        protected Vector2 position;
+        public Vector2 position;
         
         public GameObject(Texture2D texture, float X, float Y)
         {

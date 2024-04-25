@@ -10,7 +10,7 @@ namespace Zelda_game
         public Enemy(Texture2D texture, float X, float Y, float speedX, float speedY, int health) : base(texture, X, Y, speedX, speedY)
         {
         }
-        public abstract void Update();
+        public abstract void Update(GameTime time, Player player);
 
         public int Health
         {

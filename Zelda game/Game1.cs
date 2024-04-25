@@ -48,38 +48,43 @@ namespace Zelda_game
         {
             player.Update(gameTime);
             CalcTranslation();
-            foreach(Enemy en in enemies)
+            foreach (Enemy en in enemies)
             {
-                if (en.CheckCollision(player))
+                en.Update(gameTime, player);
+                if (en.CheckCollision(player) && !player.Iframes)
                 {
                     player.Health -= 1;
-                    
+                    player.Iframes = true;
+
                 }
 
-                foreach(Sword sword in player.Swords)
+                foreach (Sword sword in player.Swords)
                 {
                     if (en.CheckCollision(sword))
                     {
                         en.Health -= 1;
                     }
                 }
-            if(en.Health <= 0)
-                {
-                    en.IsAlive = false;
-                    enemies.Remove(en);
-                }
             }
-
-
-            if(player.Health == 0)
+            if (player.Iframes)
             {
-                player.IsAlive = false;
-                this.Exit();
+                player.IframeDuration++;
+                if (player.IframeDuration >= 50)  // Replace with timer logic
+                {
+                    player.Iframes = false;
+                    player.IframeDuration = 0;
+                }
+
+                if (player.Health == 0)
+                {
+                    player.IsAlive = false;
+                    this.Exit();
+                }
+
+                // TODO: Add your update logic here
+
+                base.Update(gameTime);
             }
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)

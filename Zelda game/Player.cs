@@ -10,6 +10,9 @@ namespace Zelda_game
     {
         int health = 6;
         int points = 0;
+
+        public bool Iframes;
+        public double IframeDuration = 0;
         enum directon { up, down, left, right };
         directon facing;
         Timer swordTimer;
@@ -95,6 +98,7 @@ namespace Zelda_game
                 position.X += speed.X;
                 facing = directon.right;
             }
+
 
 
         }
