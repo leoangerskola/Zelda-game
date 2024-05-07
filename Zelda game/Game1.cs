@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Zelda_game
 {
@@ -39,7 +40,7 @@ namespace Zelda_game
             
            
             enemies = new List<Enemy>();
-            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/Bokoblin_sprite"), 0, 200);
+            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/Bokoblin_sprite"), 0, 200, Content.Load<Texture2D>("enemies/spear"));
             enemies.Add(bokoblin);
             // TODO: use this.Content to load your game content here
         }
@@ -48,7 +49,7 @@ namespace Zelda_game
         {
             player.Update(gameTime);
             CalcTranslation();
-            foreach (Enemy en in enemies)
+            foreach (Bokoblin en in enemies.ToList())
             {
                 en.Update(gameTime, player);
                 if (en.CheckCollision(player) && !player.Iframes)
@@ -65,6 +66,13 @@ namespace Zelda_game
                         en.Health -= 1;
                     }
                 }
+
+                if(en.Health == 0)
+                {
+                    enemies.Remove(en);
+                }
+
+
             }
             if (player.Iframes)
             {

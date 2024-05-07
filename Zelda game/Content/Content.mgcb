@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:enemies/bokoblintemp.png
 
+#begin enemies/spear.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemies/spear.png
+
 #begin Player/link_sprite.png
 /importer:TextureImporter
 /processor:TextureProcessor

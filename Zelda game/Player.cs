@@ -15,12 +15,10 @@ namespace Zelda_game
         public double IframeDuration = 0;
         enum directon { up, down, left, right };
         directon facing;
-        Timer swordTimer;
 
         Texture2D swordTexture;
         List<Sword> swords;
         double attackCooldown = 0;
-        bool Isattacking;
 
         public Player(Texture2D texture, float X, float Y, float speedX, float speedY, Texture2D swordTexture) : base(texture, X, Y, speedX, speedY)
         {
@@ -65,10 +63,7 @@ namespace Zelda_game
                 attackCooldown = time.TotalGameTime.TotalMilliseconds;
                 swords.Add(temp);
             }
-            else
-            {
-                Isattacking = false;
-            }
+ 
             swords.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
 
 
