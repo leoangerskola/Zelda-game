@@ -20,7 +20,7 @@ namespace Zelda_game
             position.Y = Y;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch) 
+        public virtual void Draw(SpriteBatch spriteBatch, Player player) 
         {
             spriteBatch.Draw(texture, position, Color.White);
         }

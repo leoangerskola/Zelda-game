@@ -40,7 +40,7 @@ namespace Zelda_game
             
            
             enemies = new List<Enemy>();
-            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/Bokoblin_sprite"), 0, 200, Content.Load<Texture2D>("enemies/spear"));
+            Bokoblin bokoblin = new Bokoblin(Content.Load<Texture2D>("Enemies/Bokoblin_sprite"), 0, 200, Content.Load<Texture2D>("enemies/spear"), Content);
             enemies.Add(bokoblin);
             // TODO: use this.Content to load your game content here
         }
@@ -99,11 +99,11 @@ namespace Zelda_game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(transformMatrix: translation);
-            player.Draw(_spriteBatch);
+            player.Draw(_spriteBatch, player);
             
             foreach(Enemy enemy in enemies)
             {
-                enemy.Draw(_spriteBatch);
+                enemy.Draw(_spriteBatch, player);
             }
 
             _spriteBatch.End();

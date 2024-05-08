@@ -115,12 +115,12 @@ namespace Zelda_game
             get { return swords; }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, Player player)
         {
             spriteBatch.Draw(texture, position, Color.White);
             foreach (Sword sword in swords)
             {
-                sword.Draw(spriteBatch);
+                sword.Draw(spriteBatch,player);
             }
         }
     }
