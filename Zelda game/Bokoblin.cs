@@ -11,7 +11,7 @@ namespace Zelda_game
 {
     internal class Bokoblin : Enemy
     {
-        float chaseSpeed = 3;
+        float chaseSpeed = 2;
         bool isAttacking;
         float attackRange = 50;
 
@@ -23,7 +23,7 @@ namespace Zelda_game
         public Bokoblin(Texture2D texture, float X, float Y, Texture2D spearTexture, ContentManager content)
             : base(texture, X, Y, 3, 3)
         {
-            // Initialize attack textures (replace with your actual textures)
+            // Initialize attack textures 
             attackTextures = new Dictionary<Direction, Texture2D>()
             {
                 { Direction.Up, content.Load<Texture2D>("enemies/Boko_atk_up") },

@@ -7,9 +7,9 @@ namespace Zelda_game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        //Player player;
+        Player player;
         //List<Enemy> enemies;
-        //private Matrix translation;
+        private Matrix translation;
         //PrintText printText;
         //Random random = new Random();
 
@@ -19,17 +19,17 @@ namespace Zelda_game
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-        //public void CalcTranslation()
-        //{
-        //    var dx = (GraphicsDevice.Viewport.Width / 2) - player.X;
-        //    var dy = (GraphicsDevice.Viewport.Height / 2) - player.Y;
-        //    translation = Matrix.CreateTranslation(dx, dy, 0);
-        //}
+        public void CalcTranslation()
+        {
+            var dx = (GraphicsDevice.Viewport.Width / 2) - player.X;
+            var dy = (GraphicsDevice.Viewport.Height / 2) - player.Y;
+            translation = Matrix.CreateTranslation(dx, dy, 0);
+        }
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             GameElements.curentState = GameElements.GameState.Menu;
-            GameElements.Initialize();
+            GameElements.Initialize(Window, Content);
 
             base.Initialize();
         }
@@ -83,9 +83,8 @@ namespace Zelda_game
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin();
 
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             switch (GameElements.curentState)
             {
                 case GameElements.GameState.Playing:
@@ -109,7 +108,6 @@ namespace Zelda_game
             //{
             //    enemy.Draw(_spriteBatch, player);
             //}
-            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

@@ -17,6 +17,7 @@ class HSItem
     string name;
     int points;
 
+
     public string Name { get { return name; } set { name = value; } }
 
     public int Points { get { return points; } set { points = value; } }
