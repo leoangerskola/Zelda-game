@@ -7,9 +7,7 @@ namespace Zelda_game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Player player;
         //List<Enemy> enemies;
-        private Matrix translation;
         //PrintText printText;
         //Random random = new Random();
 
@@ -19,12 +17,7 @@ namespace Zelda_game
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-        public void CalcTranslation()
-        {
-            var dx = (GraphicsDevice.Viewport.Width / 2) - player.X;
-            var dy = (GraphicsDevice.Viewport.Height / 2) - player.Y;
-            translation = Matrix.CreateTranslation(dx, dy, 0);
-        }
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here

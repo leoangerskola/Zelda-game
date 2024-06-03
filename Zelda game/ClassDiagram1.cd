@@ -24,36 +24,43 @@
   <Class Name="Zelda_game.Player" Collapsed="true">
     <Position X="7" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQACACAAQAAgAAIAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAQACBCAAwAQggQQAAAEAAAgAAAAAAAAARgAAAAIAAg=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zelda_game.Enemy" Collapsed="true">
     <Position X="9.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAQACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zelda_game.Bokoblin" Collapsed="true">
     <Position X="9.25" Y="12" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAQAQAAAAQAAAgAIBAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Bokoblin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zelda_game.Sword" Collapsed="true">
-    <Position X="4" Y="12" Width="1.5" />
+    <Position X="4.75" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sword.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zelda_game.Weapon" Collapsed="true">
     <Position X="4" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zelda_game.Arrow" Collapsed="true">
+    <Position X="3" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arrow.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

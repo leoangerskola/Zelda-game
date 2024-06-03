@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using static Zelda_game.Bokoblin;
@@ -19,19 +20,17 @@ namespace Zelda_game
         direction facing;
 
         Texture2D swordTexture;
-        List<Sword> swords;
+        List<Weapon> weapons;
         Texture2D arrowTexture;
-        List<Arrow> arrows;
         double attackCooldown = 0;
 
         public bool unlockedBow = false;
 
         public Player(Texture2D texture, float X, float Y, float speedX, float speedY, Texture2D swordTexture, Texture2D arrowTexture) : base(texture, X, Y, speedX, speedY)
         {
-            swords = new List<Sword>();
+            weapons = new List<Weapon>();
             this.swordTexture = swordTexture;
             this.arrowTexture = arrowTexture;
-            arrows = new List<Arrow>();
         }
 
         public void Update(GameTime time)
@@ -49,8 +48,6 @@ namespace Zelda_game
 
                 Sword temp;
 
-
-                float rotation = 0;
 
                 switch (facing)
                 {
@@ -71,10 +68,10 @@ namespace Zelda_game
                         break;
                 }
                 attackCooldown = time.TotalGameTime.TotalMilliseconds;
-                swords.Add(temp);
+                weapons.Add(temp);
             }
 
-            swords.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
+            weapons.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
 
 
             //arrow controls
@@ -108,7 +105,7 @@ namespace Zelda_game
                         break;
                 }
                 attackCooldown = time.TotalGameTime.TotalMilliseconds;
-                arrows.Add(temp);
+                weapons.Add(temp);
                 arrowamount--;
             }
 
@@ -155,15 +152,9 @@ namespace Zelda_game
             set { points = value; }
         }
 
-        public List<Sword> Swords
+        public List<Weapon> Weapons
         {
-            get { return swords; }
-        }
-
-
-        public List<Arrow> Arrows
-        {
-            get { return arrows; }
+            get { return weapons; }
         }
 
         public int arrowAmount
@@ -175,14 +166,11 @@ namespace Zelda_game
         public override void Draw(SpriteBatch spriteBatch, Player player)
         {
             spriteBatch.Draw(texture, position, Color.White);
-            foreach (Sword sword in swords)
+            foreach (Weapon weapon in weapons)
             {
-                sword.Draw(spriteBatch,player);
+                weapon.Draw(spriteBatch, player);
             }
-            foreach (Arrow arrow in arrows)
-            {
-                arrow.Draw(spriteBatch,player);
-            }
+
         }
     }
 

@@ -14,10 +14,7 @@ namespace Zelda_game
         {
             this.rotation = rotation;   
         }
-        public void Update(GameTime time)
-        {
 
-        }
         public override void Draw(SpriteBatch spriteBatch, Player player)
         {
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);

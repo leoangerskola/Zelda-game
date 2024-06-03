@@ -147,24 +147,22 @@ namespace Zelda_game
                     player.Iframes = true;
                 }
 
-                foreach (Sword sword in player.Swords.ToList())
+                foreach (Weapon weapon in player.Weapons.ToList())
                 {
-                    if (en.CheckCollision(sword))
+                    if (en.CheckCollision(weapon))
                     {
-                        
+                        if(weapon is Sword) { 
                         en.Health -= 3;
-                        player.Swords.Remove(sword);
+                        player.Weapons.Remove(weapon);
+                        }
+                        else if(weapon is Arrow)
+                        {
+                            en.Health -= 1;
+                            player.Weapons.Remove(weapon);
+                        }
                     }
                 }
-                foreach (Arrow arrow in player.Arrows.ToList())
-                {
-                    arrow.Update(gameTime);
-                    if (en.CheckCollision(arrow))
-                    {
-                        en.Health -= 1;
-                        player.Arrows.Remove(arrow);
-                    }
-                }
+
 
                 if (en.Health == 0)
                 {
@@ -258,6 +256,7 @@ namespace Zelda_game
                         highscore.SaveToFile("highscore.txt");
 
                     }
+
 
                     break;
                 default:

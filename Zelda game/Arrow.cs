@@ -14,7 +14,7 @@ namespace Zelda_game
         {
             this.rotation = rotation;
         }
-        public void Update(GameTime time)
+        public override void Update(GameTime time)
         {
             position.X += speed.X;
             position.Y += speed.Y;

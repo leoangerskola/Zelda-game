@@ -15,7 +15,10 @@ namespace Zelda_game
         {
 
         }
+        public virtual void Update(GameTime gameTime)
+        {
 
+        }
 
     }
 }
