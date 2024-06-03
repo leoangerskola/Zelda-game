@@ -11,9 +11,9 @@ namespace Zelda_game
 {
     internal class Weapon : PhysicalObject
     {
-        public Weapon(Texture2D texture, float X, float Y, float speedX, float speedY) : base(texture, X, Y, speedX, speedY)
+        protected float rotation;
+        public Weapon(Texture2D texture, float X, float Y, float speedX, float speedY, float rotation) : base(texture, X, Y, speedX, speedY)
         {
-
         }
         public virtual void Update(GameTime gameTime)
         {

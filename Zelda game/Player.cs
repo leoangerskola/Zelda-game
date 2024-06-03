@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using static Zelda_game.Bokoblin;
 
@@ -71,8 +72,6 @@ namespace Zelda_game
                 weapons.Add(temp);
             }
 
-            weapons.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
-
 
             //arrow controls
 
@@ -85,19 +84,19 @@ namespace Zelda_game
                 switch (facing)
                 {
                     case direction.up:
-                        arrowSpeedY = -1f;
+                        arrowSpeedY = -7f;
                         temp = new Arrow(arrowTexture, position.X + 5, position.Y - 20, arrowSpeedX, arrowSpeedY, MathHelper.ToRadians(0));
                         break;
                     case direction.down:
-                        arrowSpeedY = 1f;
+                        arrowSpeedY = 7f;
                         temp = new Arrow(arrowTexture, position.X + 5, position.Y + 20, arrowSpeedX, arrowSpeedY, MathHelper.ToRadians(180));
                         break;
                     case direction.left:
-                        arrowSpeedX = -1f;
+                        arrowSpeedX = -7f;
                         temp = new Arrow(arrowTexture, position.X - 10, position.Y, arrowSpeedX, arrowSpeedY, MathHelper.ToRadians(270));
                         break;
                     case direction.right:
-                        arrowSpeedX = 1f;
+                        arrowSpeedX = 7f;
                         temp = new Arrow(arrowTexture, position.X + 20, position.Y, arrowSpeedX, arrowSpeedY, MathHelper.ToRadians(90));
                         break;
                     default:
@@ -107,6 +106,17 @@ namespace Zelda_game
                 attackCooldown = time.TotalGameTime.TotalMilliseconds;
                 weapons.Add(temp);
                 arrowamount--;
+            }
+
+            foreach (Weapon weapon in weapons.ToList())
+            {
+                weapon.Update(time);
+
+                if(weapon is Sword)
+                {
+                    weapons.RemoveAll(sword => time.TotalGameTime.TotalMilliseconds - attackCooldown > 150);
+
+                }
             }
 
             if(arrowamount > 30) arrowamount = 30; 

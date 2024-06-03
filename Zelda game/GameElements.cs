@@ -134,6 +134,7 @@ namespace Zelda_game
         {
 
             player.Update(gameTime);
+
             CalcTranslation();
             ResolveEnemyCollisions(enemies);
             ui.Update(gameTime);
@@ -154,6 +155,7 @@ namespace Zelda_game
                         if(weapon is Sword) { 
                         en.Health -= 3;
                         player.Weapons.Remove(weapon);
+
                         }
                         else if(weapon is Arrow)
                         {

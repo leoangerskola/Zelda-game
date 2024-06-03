@@ -9,8 +9,7 @@ namespace Zelda_game
 {
     internal class Arrow : Weapon
     {
-        private float rotation;
-        public Arrow(Texture2D texture, float X, float Y, float speedX, float speedY, float rotation) : base(texture, X, Y, speedX, speedY)
+        public Arrow(Texture2D texture, float X, float Y, float speedX, float speedY, float rotation) : base(texture, X, Y, speedX, speedY, rotation)
         {
             this.rotation = rotation;
         }

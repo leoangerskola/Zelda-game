@@ -9,10 +9,9 @@ namespace Zelda_game
 {
     internal class Sword : Weapon
     {
-        private float rotation;
-        public Sword(Texture2D texture, float X, float Y, float speedX, float speedY, float rotation) : base(texture, X, Y, 4, 4)
+        public Sword(Texture2D texture, float X, float Y, float speedX, float speedY, float rotation) : base(texture, X, Y, 4, 4, rotation)
         {
-            this.rotation = rotation;   
+            this.rotation = rotation;
         }
 
         public override void Draw(SpriteBatch spriteBatch, Player player)
